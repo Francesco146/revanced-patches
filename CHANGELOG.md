@@ -1,3 +1,10 @@
+# [2.225.0-dev.3](https://github.com/Francesco146/revanced-patches/compare/v2.225.0-dev.2...v2.225.0-dev.3) (2024-07-10)
+
+
+### Features
+
+* test3 ([2de84f8](https://github.com/Francesco146/revanced-patches/commit/2de84f805ef9238fade92afc0c5244bb4dbc1e8b))
+
 # [2.225.0-dev.2](https://github.com/Francesco146/revanced-patches/compare/v2.225.0-dev.1...v2.225.0-dev.2) (2024-07-10)
 
 
