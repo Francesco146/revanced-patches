@@ -80,6 +80,7 @@ tasks {
 
     register<JavaExec>("generatePatchesFiles") {
         description = "Generate patches files"
+        group = "build"
 
         dependsOn(build)
 
