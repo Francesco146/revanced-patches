@@ -91,8 +91,8 @@ tasks {
     // Needed by gradle-semantic-release-plugin.
     // Tracking: https://github.com/KengoTODA/gradle-semantic-release-plugin/issues/435
     publish {
-        dependsOn("buildDexJar")
         dependsOn("generatePatchesFiles")
+        dependsOn("buildDexJar")
     }
 }
 
