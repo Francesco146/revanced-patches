@@ -554,6 +554,10 @@
 
 	<!-- PREFERENCE_SCREEN: VIDEO
 	<PreferenceScreen android:title="@string/revanced_preference_screen_video_title" android:key="revanced_preference_screen_video">
+		<PreferenceScreen android:title="@string/revanced_preference_screen_geo_restrictions_title" android:key="revanced_preference_screen_geo_restrictions" android:summary="@string/revanced_preference_screen_geo_restrictions_summary">
+			<SwitchPreference android:title="@string/revanced_geo_restrictions_title" android:key="revanced_geo_restrictions" android:summaryOn="@string/revanced_geo_restrictions_summary_on" android:summaryOff="@string/revanced_geo_restrictions_summary_off" />
+			<ListPreference android:entries="@array/revanced_geo_locations_entries" android:title="@string/revanced_geo_locations_title" android:summary="@string/revanced_geo_locations_summary" android:key="revanced_geo_locations" android:entryValues="@array/revanced_geo_locations_entry_values" android:dependency="revanced_geo_restrictions"/>
+		</PreferenceScreen>
 		<ListPreference android:title="@string/revanced_default_video_quality_wifi_title" android:key="revanced_default_video_quality_wifi" android:entries="@array/revanced_default_video_quality_entries" android:defaultValue="-2" android:entryValues="@array/revanced_default_video_quality_entry_values" />
 		<ListPreference android:title="@string/revanced_default_video_quality_mobile_title" android:key="revanced_default_video_quality_mobile" android:entries="@array/revanced_default_video_quality_entries" android:defaultValue="-2" android:entryValues="@array/revanced_default_video_quality_entry_values" />
 		<SwitchPreference android:title="@string/revanced_remember_video_quality_last_selected_title" android:key="revanced_remember_video_quality_last_selected" android:defaultValue="true" android:summaryOn="@string/revanced_remember_video_quality_last_selected_summary_on" android:summaryOff="@string/revanced_remember_video_quality_last_selected_summary_off" />

@@ -1782,6 +1782,12 @@ public final class app/revanced/patches/youtube/video/playback/CustomPlaybackSpe
 	public static final field INSTANCE Lapp/revanced/patches/youtube/video/playback/CustomPlaybackSpeedPatch;
 }
 
+public final class app/revanced/patches/youtube/video/playback/RemoveGeoRestrictionPatch : app/revanced/util/patch/BaseBytecodePatch {
+	public static final field INSTANCE Lapp/revanced/patches/youtube/video/playback/RemoveGeoRestrictionPatch;
+	public fun execute (Lapp/revanced/patcher/data/BytecodeContext;)V
+	public synthetic fun execute (Lapp/revanced/patcher/data/Context;)V
+}
+
 public final class app/revanced/patches/youtube/video/playback/VideoPlaybackPatch : app/revanced/util/patch/BaseBytecodePatch {
 	public static final field INSTANCE Lapp/revanced/patches/youtube/video/playback/VideoPlaybackPatch;
 	public fun execute (Lapp/revanced/patcher/data/BytecodeContext;)V
