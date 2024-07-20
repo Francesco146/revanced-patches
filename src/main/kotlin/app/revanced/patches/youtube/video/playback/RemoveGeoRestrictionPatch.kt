@@ -9,6 +9,8 @@ import app.revanced.patches.youtube.utils.integrations.Constants.VIDEO_PATH
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.video.playback.fingerprints.GetOneSieHeadersFingerprint
 import app.revanced.patches.youtube.video.playback.fingerprints.GetWatchHeadersFingerprint
+import app.revanced.patches.youtube.video.playback.fingerprints.TestFingerprint
+import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getTargetIndexWithMethodReferenceNameOrThrow
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
@@ -22,7 +24,8 @@ object RemoveGeoRestrictionPatch : BaseBytecodePatch(
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(
         GetOneSieHeadersFingerprint,
-        GetWatchHeadersFingerprint
+        GetWatchHeadersFingerprint,
+        TestFingerprint
     )
 ) {
     private const val INTEGRATIONS_GEO_RESTRICTION_CLASS_DESCRIPTOR =
@@ -56,8 +59,32 @@ object RemoveGeoRestrictionPatch : BaseBytecodePatch(
                             "shouldNotChangeLocation", getInstruction(insertIndex + 1)
                         )
                     )
-
                 }
+            }
+        }
+
+        TestFingerprint.resultOrThrow().let {
+            it.mutableMethod.apply {
+                val insertIndex = getStringInstructionIndex("Content-Length") + 3
+                val targetMapRegister = getInstruction<FiveRegisterInstruction>(insertIndex).registerC
+                val insertKeyRegister = getInstruction<FiveRegisterInstruction>(insertIndex).registerD
+                val insertValueRegister = getInstruction<FiveRegisterInstruction>(insertIndex).registerE
+
+                addInstructionsWithLabels(
+                    insertIndex + 1,
+                    """
+                    invoke-static {}, $INTEGRATIONS_GEO_RESTRICTION_CLASS_DESCRIPTOR->shouldChangeLocation()Z
+                    move-result v$insertKeyRegister
+                    if-eqz v$insertKeyRegister, :shouldNotChangeLocation
+                    const-string v$insertKeyRegister, "X-Forwarded-For"
+                    invoke-static {}, $INTEGRATIONS_GEO_RESTRICTION_CLASS_DESCRIPTOR->getIp()Ljava/lang/String;
+                    move-result-object v$insertValueRegister
+                    invoke-virtual {v$targetMapRegister, v$insertKeyRegister, v$insertValueRegister}, Lorg/chromium/net/UrlRequest${'$'}Builder;->addHeader(Ljava/lang/String;Ljava/lang/String;)Lorg/chromium/net/UrlRequest${'$'}Builder;
+                    """,
+                    ExternalLabel(
+                        "shouldNotChangeLocation", getInstruction(insertIndex + 1)
+                    )
+                )
             }
         }
     }
