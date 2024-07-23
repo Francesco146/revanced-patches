@@ -5,15 +5,14 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWith
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.youtube.utils.fix.client.fingerprints.BuildInitPlaybackRequestFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.VIDEO_PATH
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.video.playback.fingerprints.GetOneSieHeadersFingerprint
 import app.revanced.patches.youtube.video.playback.fingerprints.GetWatchHeadersFingerprint
-import app.revanced.patches.youtube.video.playback.fingerprints.TestFingerprint
-import app.revanced.util.getStringInstructionIndex
-import app.revanced.util.getTargetIndexWithMethodReferenceNameOrThrow
+import app.revanced.patches.youtube.video.playback.fingerprints.GetListenableFutureHeadersFingerprint
+import app.revanced.util.*
 import app.revanced.util.patch.BaseBytecodePatch
-import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
 @Suppress("unused")
@@ -25,7 +24,8 @@ object RemoveGeoRestrictionPatch : BaseBytecodePatch(
     fingerprints = setOf(
         GetOneSieHeadersFingerprint,
         GetWatchHeadersFingerprint,
-        TestFingerprint
+        BuildInitPlaybackRequestFingerprint,
+        GetListenableFutureHeadersFingerprint
     )
 ) {
     private const val INTEGRATIONS_GEO_RESTRICTION_CLASS_DESCRIPTOR =
@@ -63,7 +63,7 @@ object RemoveGeoRestrictionPatch : BaseBytecodePatch(
             }
         }
 
-        TestFingerprint.resultOrThrow().let {
+        GetListenableFutureHeadersFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex = getStringInstructionIndex("Content-Length") + 3
                 val targetMapRegister = getInstruction<FiveRegisterInstruction>(insertIndex).registerC
@@ -87,5 +87,32 @@ object RemoveGeoRestrictionPatch : BaseBytecodePatch(
                 )
             }
         }
+        BuildInitPlaybackRequestFingerprint.resultOrThrow().let {
+            it.mutableMethod.apply {
+                val targetIndex = getTargetIndexWithMethodReferenceNameReversedOrThrow("addHeader")
+                val targetMapRegister = getInstruction<FiveRegisterInstruction>(targetIndex).registerC
+                val insertKeyRegister = getInstruction<FiveRegisterInstruction>(targetIndex).registerD
+                val insertValueRegister = getInstruction<FiveRegisterInstruction>(targetIndex).registerE
+
+                val insertIndex = getTargetIndexWithMethodReferenceNameOrThrow("setHttpMethod") + 1
+                addInstructionsWithLabels(
+                    insertIndex,
+                    """
+                    invoke-static {}, $INTEGRATIONS_GEO_RESTRICTION_CLASS_DESCRIPTOR->shouldChangeLocation()Z
+                    move-result v$insertKeyRegister
+                    if-eqz v$insertKeyRegister, :shouldNotChangeLocation
+                    const-string v$insertKeyRegister, "X-Forwarded-For"
+                    invoke-static {}, $INTEGRATIONS_GEO_RESTRICTION_CLASS_DESCRIPTOR->getIp()Ljava/lang/String;
+                    move-result-object v$insertValueRegister
+                    invoke-virtual {v$targetMapRegister, v$insertKeyRegister, v$insertValueRegister}, Lorg/chromium/net/UrlRequest${'$'}Builder;->addHeader(Ljava/lang/String;Ljava/lang/String;)Lorg/chromium/net/UrlRequest${'$'}Builder;
+                    """,
+                    ExternalLabel(
+                        "shouldNotChangeLocation", getInstruction(insertIndex)
+                    )
+                )
+            }
+        }
+
+
     }
 }
