@@ -18,7 +18,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
 object ShortsToolBarPatch : BytecodePatch(
-    setOf(ShortsToolBarFingerprint)
+    setOf(ShortsToolBarFingerprint, ShortsToolBarCreationFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         ShortsToolBarFingerprint.resultOrThrow().let {

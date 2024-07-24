@@ -57,7 +57,6 @@ object ShortsComponentPatch : BaseBytecodePatch(
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(
         ShortsButtonFingerprint,
-        ShortsToolBarCreationFingerprint,
         ShortsPaidPromotionFingerprint,
         ShortsPausedHeaderFingerprint,
         ShortsPivotLegacyFingerprint,
