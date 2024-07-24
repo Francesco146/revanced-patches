@@ -107,6 +107,7 @@ object SharedResourceIdPatch : ResourcePatch() {
     var ToolTipContentView = -1L
     var TotalTime = -1L
     var TouchArea = -1L
+    var ElementsTopBarContainer = -1L
     var VideoQualityBottomSheet = -1L
     var VarispeedUnavailableTitle = -1L
     var VideoQualityUnavailableAnnouncement = -1L
@@ -214,6 +215,7 @@ object SharedResourceIdPatch : ResourcePatch() {
         ToolTipContentView = getId(LAYOUT, "tooltip_content_view")
         TotalTime = getId(STRING, "total_time")
         TouchArea = getId(ID, "touch_area")
+        ElementsTopBarContainer = getId(ID, "elements_top_bar_container")
         VideoQualityBottomSheet = getId(LAYOUT, "video_quality_bottom_sheet_list_fragment_title")
         VarispeedUnavailableTitle = getId(STRING, "varispeed_unavailable_title")
         VideoQualityUnavailableAnnouncement =

@@ -11,12 +11,7 @@ import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.litho.LithoFilterPatch
-import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsButtonFingerprint
-import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsPaidPromotionFingerprint
-import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsPausedHeaderFingerprint
-import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsPivotLegacyFingerprint
-import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsSubscriptionsTabletFingerprint
-import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsSubscriptionsTabletParentFingerprint
+import app.revanced.patches.youtube.shorts.components.fingerprints.*
 import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.fingerprints.TextComponentSpecFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
@@ -34,15 +29,8 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.RightComment
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.video.information.VideoInformationPatch
-import app.revanced.util.REGISTER_TEMPLATE_REPLACEMENT
-import app.revanced.util.getTargetIndexOrThrow
-import app.revanced.util.getTargetIndexReversedOrThrow
-import app.revanced.util.getTargetIndexWithReferenceOrThrow
-import app.revanced.util.getWalkerMethod
-import app.revanced.util.getWideLiteralInstructionIndex
-import app.revanced.util.literalInstructionHook
+import app.revanced.util.*
 import app.revanced.util.patch.BaseBytecodePatch
-import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -69,6 +57,7 @@ object ShortsComponentPatch : BaseBytecodePatch(
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(
         ShortsButtonFingerprint,
+        ShortsToolBarCreationFingerprint,
         ShortsPaidPromotionFingerprint,
         ShortsPausedHeaderFingerprint,
         ShortsPivotLegacyFingerprint,
