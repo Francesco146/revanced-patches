@@ -1,7 +1,6 @@
 package app.revanced.patches.youtube.shorts.components
 
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
@@ -42,9 +41,11 @@ object ShortsToolBarPatch : BytecodePatch(
                             && (this as? ReferenceInstruction)?.reference?.toString() == "Landroid/view/ViewGroup;"
                 }
                 val viewRegister = getInstruction<OneRegisterInstruction>(viewIndex).registerA
-                addInstruction(
-                    viewIndex + 1,
-                    "invoke-static {v$viewRegister}, $SHORTS_CLASS_DESCRIPTOR->addShortsToolBarButton(Landroid/view/ViewGroup;)V"
+                addInstructions(
+                    viewIndex + 1, """
+                        invoke-static {v$viewRegister}, $SHORTS_CLASS_DESCRIPTOR->addShortsToolBarButton(Landroid/view/ViewGroup;)Landroid/view/ViewGroup;
+                        move-result-object v$viewRegister
+                        """.trimIndent()
                 )
             }
         }
