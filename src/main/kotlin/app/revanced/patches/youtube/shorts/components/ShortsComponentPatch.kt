@@ -291,6 +291,8 @@ object ShortsComponentPatch : BaseBytecodePatch(
             val targetMethod =
                 it.getWalkerMethod(context, it.scanResult.patternScanResult!!.endIndex)
 
+            it.mutableMethod.addInstruction(0, "invoke-static {p2}, $SHORTS_CLASS_DESCRIPTOR->debug(Landroid/view/View;)V")
+
             targetMethod.apply {
                 val insertIndex = getTargetIndexWithMethodReferenceNameOrThrow("findViewById") + 1
                 addInstructions(
@@ -301,12 +303,13 @@ object ShortsComponentPatch : BaseBytecodePatch(
 
                     """.trimIndent()
                 )
-                val replaceIndex = getTargetIndexOrThrow(Opcode.CHECK_CAST)
-                removeInstruction(replaceIndex)
-
-                addInstruction(
-                    replaceIndex + 1,
-                    "return-void"
+                val secondInsertIndex = getTargetIndexOrThrow(Opcode.IPUT_OBJECT)
+                addInstructions(
+                    secondInsertIndex,
+                    """
+                    invoke-static {p1}, $SHORTS_CLASS_DESCRIPTOR->addShortsToolBarButton(Landroid/view/View;)Landroid/view/View;
+                    move-result-object p1
+                    """.trimIndent()
                 )
             }
         }
