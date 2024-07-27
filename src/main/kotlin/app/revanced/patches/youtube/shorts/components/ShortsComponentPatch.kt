@@ -285,6 +285,34 @@ object ShortsComponentPatch : BaseBytecodePatch(
 
         // endregion
 
+        // region patch for add overlay buttons
+
+        ShortsPausedHeaderFingerprint.resultOrThrow().let {
+            val targetMethod =
+                it.getWalkerMethod(context, it.scanResult.patternScanResult!!.endIndex)
+
+            targetMethod.apply {
+                val insertIndex = getTargetIndexWithMethodReferenceNameOrThrow("findViewById") + 1
+                addInstructions(
+                    insertIndex,
+                    """
+                    move-result-object p1
+                    invoke-static {p1}, $SHORTS_CLASS_DESCRIPTOR->addShortsToolBarButton(Landroid/view/View;)Landroid/view/View;
+
+                    """.trimIndent()
+                )
+                val replaceIndex = getTargetIndexOrThrow(Opcode.CHECK_CAST)
+                removeInstruction(replaceIndex)
+
+                addInstruction(
+                    replaceIndex + 1,
+                    "return-void"
+                )
+            }
+        }
+
+        // endregion
+
         // region patch for return shorts channel name
 
         TextComponentSpecFingerprint.resultOrThrow().let {

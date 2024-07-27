@@ -33,21 +33,5 @@ object ShortsToolBarPatch : BytecodePatch(
                 )
             }
         }
-        ShortsToolBarCreationFingerprint.resultOrThrow().let {
-            it.mutableMethod.apply {
-                val literalIndex = getWideLiteralInstructionIndex(ElementsTopBarContainer)
-                val viewIndex = indexOfFirstInstructionOrThrow(literalIndex) {
-                    opcode == Opcode.CHECK_CAST
-                            && (this as? ReferenceInstruction)?.reference?.toString() == "Landroid/view/ViewGroup;"
-                }
-                val viewRegister = getInstruction<OneRegisterInstruction>(viewIndex).registerA
-                addInstructions(
-                    viewIndex + 1, """
-                        invoke-static {v$viewRegister}, $SHORTS_CLASS_DESCRIPTOR->addShortsToolBarButton(Landroid/view/ViewGroup;)Landroid/view/ViewGroup;
-                        move-result-object v$viewRegister
-                        """.trimIndent()
-                )
-            }
-        }
     }
 }
