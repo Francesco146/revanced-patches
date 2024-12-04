@@ -6,11 +6,13 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsToolBarFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS_CLASS_DESCRIPTOR
+import app.revanced.patches.youtube.utils.toolbar.ToolBarHookPatch
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
 object ShortsToolBarPatch : BytecodePatch(
-    setOf(ShortsToolBarFingerprint)
+    fingerprints = setOf(ShortsToolBarFingerprint),
+    dependencies = setOf(ToolBarHookPatch::class)
 ) {
     override fun execute(context: BytecodeContext) {
         ShortsToolBarFingerprint.resultOrThrow().let {
@@ -26,5 +28,11 @@ object ShortsToolBarPatch : BytecodePatch(
                 )
             }
         }
+
+        // region patch the More button in Shorts' section
+
+        ToolBarHookPatch.hook("$SHORTS_CLASS_DESCRIPTOR->showShortsToolbarMenu")
+
+        // endregion
     }
 }
