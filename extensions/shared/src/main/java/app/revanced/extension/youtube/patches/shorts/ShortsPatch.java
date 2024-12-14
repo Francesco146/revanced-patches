@@ -288,7 +288,7 @@ public class ShortsPatch {
             actions.put(downloadShort, () -> VideoUtils.launchVideoExternalDownloader(videoId));
         }
 
-        if (Settings.OPEN_IN_NORMAL_PLAYER_SHORT_TOOLBAR_MENU.get()) {
+        if (Settings.OPEN_IN_NORMAL_PLAYER_SHORT_TOOLBAR_MENU.get() && Settings.ENABLE_OPEN_LINKS_DIRECTLY.get()) {
             optionsList.add(openInNormalPlayer);
             actions.put(openInNormalPlayer, () -> VideoUtils.openVideo(videoId));
         }
