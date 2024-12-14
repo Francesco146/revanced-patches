@@ -18,6 +18,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import app.revanced.extension.shared.utils.Logger;
+import app.revanced.extension.youtube.shared.ShortsInformation;
+import app.revanced.extension.youtube.shared.VideoInformation;
 import com.google.android.libraries.youtube.rendering.ui.pivotbar.PivotBar;
 
 import java.lang.ref.WeakReference;
@@ -259,27 +261,36 @@ public class ShortsPatch {
         String downloadShort = getString("revanced_hook_more_button_option_download_short_title");
         String openInNormalPlayer = getString("revanced_hook_more_button_option_open_in_normal_player_title");
 
+        String videoId;
+        if (ShortsInformation.getShortId() != null) {
+            // not in incognito mode
+            videoId = ShortsInformation.getShortId();
+        } else {
+            // in incognito mode, use videoId and hope it's correct
+            videoId = VideoInformation.getVideoId();
+        }
+
         List<String> optionsList = new ArrayList<>();
         Map<String, Runnable> actions = new HashMap<>();
 
         if (Settings.COPY_URL_SHORT_TOOLBAR_MENU.get()) {
             optionsList.add(copyLink);
-            actions.put(copyLink, () -> VideoUtils.copyUrl(false));
+            actions.put(copyLink, () -> VideoUtils.copyUrl(false, videoId));
         }
 
         if (Settings.COPY_URL_WITH_TIMESTAMP_SHORT_TOOLBAR_MENU.get()) {
             optionsList.add(copyLinkTimestamp);
-            actions.put(copyLinkTimestamp, () -> VideoUtils.copyUrl(true));
+            actions.put(copyLinkTimestamp, () -> VideoUtils.copyUrl(true, videoId));
         }
 
         if (Settings.DOWNLOAD_SHORT_TOOLBAR_MENU.get()) {
             optionsList.add(downloadShort);
-            actions.put(downloadShort, VideoUtils::launchVideoExternalDownloader);
+            actions.put(downloadShort, () -> VideoUtils.launchVideoExternalDownloader(videoId));
         }
 
         if (Settings.OPEN_IN_NORMAL_PLAYER_SHORT_TOOLBAR_MENU.get()) {
             optionsList.add(openInNormalPlayer);
-            actions.put(openInNormalPlayer, VideoUtils::openVideo);
+            actions.put(openInNormalPlayer, () -> VideoUtils.openVideo(videoId));
         }
 
         String[] options = optionsList.toArray(new String[0]);

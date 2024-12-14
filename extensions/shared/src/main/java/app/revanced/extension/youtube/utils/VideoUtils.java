@@ -249,4 +249,11 @@ public class VideoUtils extends IntentUtils {
         // These instructions are ignored by patch.
         Log.d("Extended: VideoUtils", "Video quality flyout menu opened");
     }
+
+    public static void copyUrl(boolean withTimestamp, @NonNull String videoId) {
+        setClipboard(getVideoUrl(videoId, withTimestamp), withTimestamp
+                ? str("revanced_share_copy_url_timestamp_success")
+                : str("revanced_share_copy_url_success")
+        );
+    }
 }
