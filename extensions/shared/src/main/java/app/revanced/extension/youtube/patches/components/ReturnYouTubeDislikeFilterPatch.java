@@ -134,9 +134,6 @@ public final class ReturnYouTubeDislikeFilterPatch extends Filter {
     @Override
     public boolean isFiltered(String path, @Nullable String identifier, String allValue, byte[] protobufBufferArray,
                               StringFilterGroup matchedGroup, FilterContentType contentType, int contentIndex) {
-        if (!Settings.RYD_ENABLED.get() || !Settings.RYD_SHORTS.get()) {
-            return false;
-        }
 
         FilterGroup.FilterGroupResult result = videoIdFilterGroup.check(protobufBufferArray);
         if (result.isFiltered()) {
@@ -145,6 +142,10 @@ public final class ReturnYouTubeDislikeFilterPatch extends Filter {
             // Must pass a null id to correctly clear out the current video data.
             // Otherwise if a Short is opened in non-incognito, then incognito is enabled and another Short is opened,
             // the new incognito Short will show the old prior data.
+
+            if (!Settings.RYD_ENABLED.get() || !Settings.RYD_SHORTS.get()) {
+                return false;
+            }
             ReturnYouTubeDislikePatch.setLastLithoShortsVideoId(matchedVideoId);
         }
 

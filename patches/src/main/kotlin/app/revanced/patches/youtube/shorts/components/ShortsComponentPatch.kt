@@ -47,6 +47,8 @@ import app.revanced.patches.youtube.utils.resourceid.sharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
 import app.revanced.patches.youtube.utils.settings.ResourceUtils.getContext
 import app.revanced.patches.youtube.utils.settings.settingsPatch
+import app.revanced.patches.youtube.utils.toolbar.hookToolBar
+import app.revanced.patches.youtube.utils.toolbar.toolBarHookPatch
 import app.revanced.patches.youtube.video.information.hookShortsVideoInformation
 import app.revanced.patches.youtube.video.information.videoInformationPatch
 import app.revanced.util.REGISTER_TEMPLATE_REPLACEMENT
@@ -308,6 +310,9 @@ private val shortsTimeStampPatch = bytecodePatch(
 private val shortsToolBarPatch = bytecodePatch(
     description = "shortsToolBarPatch"
 ) {
+
+    dependsOn(toolBarHookPatch)
+
     execute {
         shortsToolBarFingerprint.matchOrThrow().let {
             it.method.apply {
@@ -321,6 +326,12 @@ private val shortsToolBarPatch = bytecodePatch(
                         """
                 )
             }
+
+            // region hook toolbar more button
+
+            hookToolBar("$SHORTS_CLASS_DESCRIPTOR->showShortsToolbarMenu")
+
+            // endregion
         }
     }
 }
