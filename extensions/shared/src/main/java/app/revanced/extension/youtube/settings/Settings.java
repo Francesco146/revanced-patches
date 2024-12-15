@@ -319,6 +319,7 @@ public class Settings extends BaseSettings {
     public static final BooleanSetting HIDE_PLAYER_FLYOUT_MENU_QUALITY_HEADER = new BooleanSetting("revanced_hide_player_flyout_menu_quality_header", FALSE);
     public static final BooleanSetting HIDE_PLAYER_FLYOUT_MENU_QUALITY_FOOTER = new BooleanSetting("revanced_hide_player_flyout_menu_quality_footer", TRUE, true);
     public static final BooleanSetting HIDE_PLAYER_FLYOUT_MENU_REPORT = new BooleanSetting("revanced_hide_player_flyout_menu_report", TRUE);
+    public static final BooleanSetting HIDE_PLAYER_FLYOUT_MENU_SLEEP_TIMER = new BooleanSetting("revanced_hide_player_flyout_menu_sleep_timer", FALSE);
 
     public static final BooleanSetting HIDE_PLAYER_FLYOUT_MENU_ADDITIONAL_SETTINGS = new BooleanSetting("revanced_hide_player_flyout_menu_additional_settings", FALSE);
     public static final BooleanSetting HIDE_PLAYER_FLYOUT_MENU_AMBIENT = new BooleanSetting("revanced_hide_player_flyout_menu_ambient_mode", FALSE);
@@ -326,7 +327,6 @@ public class Settings extends BaseSettings {
     public static final BooleanSetting HIDE_PLAYER_FLYOUT_MENU_LOOP = new BooleanSetting("revanced_hide_player_flyout_menu_loop_video", FALSE);
     public static final BooleanSetting HIDE_PLAYER_FLYOUT_MENU_PIP = new BooleanSetting("revanced_hide_player_flyout_menu_pip", TRUE, true);
     public static final BooleanSetting HIDE_PLAYER_FLYOUT_MENU_PREMIUM_CONTROLS = new BooleanSetting("revanced_hide_player_flyout_menu_premium_controls", TRUE);
-    public static final BooleanSetting HIDE_PLAYER_FLYOUT_MENU_SLEEP_TIMER = new BooleanSetting("revanced_hide_player_flyout_menu_sleep_timer", TRUE);
     public static final BooleanSetting HIDE_PLAYER_FLYOUT_MENU_STABLE_VOLUME = new BooleanSetting("revanced_hide_player_flyout_menu_stable_volume", FALSE);
     public static final BooleanSetting HIDE_PLAYER_FLYOUT_MENU_STATS_FOR_NERDS = new BooleanSetting("revanced_hide_player_flyout_menu_stats_for_nerds", FALSE);
     public static final BooleanSetting HIDE_PLAYER_FLYOUT_MENU_WATCH_IN_VR = new BooleanSetting("revanced_hide_player_flyout_menu_watch_in_vr", TRUE);
@@ -390,7 +390,7 @@ public class Settings extends BaseSettings {
     public static final BooleanSetting APPEND_TIME_STAMP_INFORMATION_TYPE = new BooleanSetting("revanced_append_time_stamp_information_type", TRUE, parent(APPEND_TIME_STAMP_INFORMATION));
     public static final BooleanSetting REPLACE_TIME_STAMP_ACTION = new BooleanSetting("revanced_replace_time_stamp_action", TRUE, true, parent(APPEND_TIME_STAMP_INFORMATION));
     public static final BooleanSetting ENABLE_CUSTOM_SEEKBAR_COLOR = new BooleanSetting("revanced_enable_custom_seekbar_color", FALSE, true);
-    public static final StringSetting ENABLE_CUSTOM_SEEKBAR_COLOR_VALUE = new StringSetting("revanced_custom_seekbar_color_value", "#FF0000", true, parent(ENABLE_CUSTOM_SEEKBAR_COLOR));
+    public static final StringSetting ENABLE_CUSTOM_SEEKBAR_COLOR_VALUE = new StringSetting("revanced_custom_seekbar_color_value", "#FF0033", true, parent(ENABLE_CUSTOM_SEEKBAR_COLOR));
     public static final BooleanSetting ENABLE_SEEKBAR_TAPPING = new BooleanSetting("revanced_enable_seekbar_tapping", TRUE);
     public static final BooleanSetting HIDE_SEEKBAR = new BooleanSetting("revanced_hide_seekbar", FALSE, true);
     public static final BooleanSetting HIDE_SEEKBAR_THUMBNAIL = new BooleanSetting("revanced_hide_seekbar_thumbnail", FALSE);
@@ -400,7 +400,6 @@ public class Settings extends BaseSettings {
     public static final BooleanSetting RESTORE_OLD_SEEKBAR_THUMBNAILS = new BooleanSetting("revanced_restore_old_seekbar_thumbnails",
             PatchStatus.OldSeekbarThumbnailsDefaultBoolean(), true);
     public static final BooleanSetting ENABLE_SEEKBAR_THUMBNAILS_HIGH_QUALITY = new BooleanSetting("revanced_enable_seekbar_thumbnails_high_quality", FALSE, true, "revanced_enable_seekbar_thumbnails_high_quality_dialog_message");
-    public static final BooleanSetting ENABLE_CAIRO_SEEKBAR = new BooleanSetting("revanced_enable_cairo_seekbar", FALSE, true);
 
     // PreferenceScreen: Player - Video description
     public static final BooleanSetting DISABLE_ROLLING_NUMBER_ANIMATIONS = new BooleanSetting("revanced_disable_rolling_number_animations", FALSE);
@@ -420,6 +419,7 @@ public class Settings extends BaseSettings {
 
     // PreferenceScreen: Shorts
     public static final BooleanSetting DISABLE_RESUMING_SHORTS_PLAYER = new BooleanSetting("revanced_disable_resuming_shorts_player", TRUE);
+    public static final BooleanSetting DISABLE_SHORTS_BACKGROUND_PLAYBACK = new BooleanSetting("revanced_disable_shorts_background_playback", FALSE);
     public static final BooleanSetting HIDE_SHORTS_FLOATING_BUTTON = new BooleanSetting("revanced_hide_shorts_floating_button", TRUE);
     public static final BooleanSetting HIDE_SHORTS_SHELF = new BooleanSetting("revanced_hide_shorts_shelf", TRUE, true);
     public static final BooleanSetting HIDE_SHORTS_SHELF_CHANNEL = new BooleanSetting("revanced_hide_shorts_shelf_channel", FALSE);
@@ -464,10 +464,23 @@ public class Settings extends BaseSettings {
     public static final BooleanSetting HIDE_SHORTS_SHARE_BUTTON = new BooleanSetting("revanced_hide_shorts_share_button", FALSE);
     public static final BooleanSetting HIDE_SHORTS_SOUND_BUTTON = new BooleanSetting("revanced_hide_shorts_sound_button", TRUE);
 
+    // PreferenceScreen: Shorts - Shorts player components - Animation / Feedback
     public static final BooleanSetting DISABLE_SHORTS_LIKE_BUTTON_FOUNTAIN_ANIMATION = new BooleanSetting("revanced_disable_shorts_like_button_fountain_animation", FALSE);
     public static final BooleanSetting HIDE_SHORTS_PLAY_PAUSE_BUTTON_BACKGROUND = new BooleanSetting("revanced_hide_shorts_play_pause_button_background", FALSE, true);
     public static final EnumSetting<AnimationType> ANIMATION_TYPE = new EnumSetting<>("revanced_shorts_double_tap_to_like_animation", AnimationType.ORIGINAL, true);
 
+    // PreferenceScreen: Shorts - Shorts player components - Custom actions
+    public static final BooleanSetting ENABLE_SHORTS_CUSTOM_ACTIONS_FLYOUT_MENU = new BooleanSetting("revanced_enable_shorts_custom_actions_flyout_menu", FALSE, true);
+    public static final BooleanSetting SHORTS_CUSTOM_ACTIONS_COPY_VIDEO_URL = new BooleanSetting("revanced_shorts_custom_actions_copy_video_url", FALSE, true,
+            parentsAny(ENABLE_SHORTS_CUSTOM_ACTIONS_FLYOUT_MENU));
+    public static final BooleanSetting SHORTS_CUSTOM_ACTIONS_COPY_VIDEO_URL_TIMESTAMP = new BooleanSetting("revanced_shorts_custom_actions_copy_video_url_timestamp", FALSE, true,
+            parentsAny(ENABLE_SHORTS_CUSTOM_ACTIONS_FLYOUT_MENU));
+    public static final BooleanSetting SHORTS_CUSTOM_ACTIONS_EXTERNAL_DOWNLOADER = new BooleanSetting("revanced_shorts_custom_actions_external_downloader", FALSE, true,
+            parentsAny(ENABLE_SHORTS_CUSTOM_ACTIONS_FLYOUT_MENU));
+    public static final BooleanSetting SHORTS_CUSTOM_ACTIONS_OPEN_VIDEO = new BooleanSetting("revanced_shorts_custom_actions_open_video", FALSE, true,
+            parentsAny(ENABLE_SHORTS_CUSTOM_ACTIONS_FLYOUT_MENU));
+    public static final BooleanSetting SHORTS_CUSTOM_ACTIONS_REPEAT_STATE = new BooleanSetting("revanced_shorts_custom_actions_repeat_state", FALSE, true,
+            parentsAny(ENABLE_SHORTS_CUSTOM_ACTIONS_FLYOUT_MENU));
 
     // Experimental Flags
     public static final BooleanSetting ENABLE_TIME_STAMP = new BooleanSetting("revanced_enable_shorts_time_stamp", FALSE, true);

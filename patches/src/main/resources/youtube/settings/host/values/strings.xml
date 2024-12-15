@@ -1041,7 +1041,7 @@ Tap and hold to copy video URL with timestamp."</string>
 Tap and hold to copy video timestamp."</string>
     <string name="revanced_overlay_button_mute_volume_title">Show mute volume button</string>
     <string name="revanced_overlay_button_mute_volume_summary">Tap to mute volume of the current video. Tap again to unmute.</string>
-    <string name="revanced_overlay_button_external_downloader_title">Show external download button</string>
+    <string name="revanced_overlay_button_external_downloader_title">Show external downloader button</string>
     <string name="revanced_overlay_button_external_downloader_summary">Tap to launch external downloader.</string>
     <string name="revanced_overlay_button_speed_dialog_title">Show speed dialog button</string>
     <string name="revanced_overlay_button_speed_dialog_summary">"Tap to open speed dialog.
@@ -1057,6 +1057,7 @@ Tap and hold to undo.
 Info:
 • May not work on livestreams."</string>
     <string name="revanced_overlay_button_play_all_type_title">Generate playlist mode</string>
+    <string name="revanced_overlay_button_play_all_type_entry_0">All contents (Sort by time, Ascending)</string>
     <string name="revanced_overlay_button_play_all_type_entry_1">All contents (Sort by time)</string>
     <string name="revanced_overlay_button_play_all_type_entry_2">All contents (Sort by popular)</string>
     <string name="revanced_overlay_button_play_all_type_entry_3">Videos only (Sort by time)</string>
@@ -1112,6 +1113,7 @@ Tap and hold to toggle the appended information type."</string>
     <string name="revanced_enable_custom_seekbar_color_summary_off">Custom seekbar color is disabled.</string>
     <string name="revanced_custom_seekbar_color_value_title">Custom seekbar color value</string>
     <string name="revanced_custom_seekbar_color_value_summary">Type the hex code of the seekbar color.</string>
+    <string name="revanced_custom_seekbar_color_value_invalid_invalid_toast">Invalid seekbar color value.</string>
     <string name="revanced_enable_seekbar_tapping_title">Enable seekbar tapping</string>
     <string name="revanced_enable_seekbar_tapping_summary_on">Seekbar tapping is enabled.</string>
     <string name="revanced_enable_seekbar_tapping_summary_off">Seekbar tapping is disabled.</string>
@@ -1141,11 +1143,6 @@ Tap and hold to toggle the appended information type."</string>
 Internet data usage may be higher, and seekbar thumbnails will have a slight delay before showing.
 
 This feature works best with a very fast internet connection."</string>
-    <string name="revanced_enable_cairo_seekbar_title">Enable Cairo seekbar</string>
-    <string name="revanced_enable_cairo_seekbar_summary_on">"Cairo seekbar is enabled.
-
-Side effect: Cairo theme is also applied to notification dots."</string>
-    <string name="revanced_enable_cairo_seekbar_summary_off">Cairo seekbar is disabled.</string>
 
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Video description -->
     <string name="revanced_preference_screen_video_description_title">Video description</string>
@@ -1200,6 +1197,9 @@ The Expand video description option may not work if the entered string does not 
     <!-- PreferenceScreen: Shorts -->
     <string name="revanced_preference_screen_shorts_title">Shorts</string>
 
+    <string name="revanced_disable_shorts_background_playback_title">Disable Shorts background play</string>
+    <string name="revanced_disable_shorts_background_playback_summary_on">Shorts background play is disabled.</string>
+    <string name="revanced_disable_shorts_background_playback_summary_off">Shorts background play is enabled.</string>
     <string name="revanced_disable_resuming_shorts_player_title">Disable resuming Shorts player</string>
     <string name="revanced_disable_resuming_shorts_player_summary_on">Shorts player will not resume on app startup.</string>
     <string name="revanced_disable_resuming_shorts_player_summary_off">Shorts player will resume on app startup.</string>
@@ -1354,6 +1354,37 @@ Info:
     <string name="revanced_shorts_double_tap_to_like_animation_entry_4">Heart</string>
     <string name="revanced_shorts_double_tap_to_like_animation_entry_5">Heart (Tint)</string>
     <string name="revanced_shorts_double_tap_to_like_animation_entry_6">Hidden</string>
+
+    <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts, PreferenceScreen: Shorts player, PreferenceCategory: Custom actions -->
+    <string name="revanced_preference_category_custom_actions">Custom actions</string>
+    <string name="revanced_enable_shorts_custom_actions_flyout_menu_title">Enable custom actions in flyout menu</string>
+    <string name="revanced_enable_shorts_custom_actions_flyout_menu_summary_on">"Custom actions are enabled in flyout menu.
+
+Limitations:
+• Does not work if app version is spoofed to 18.49.37 or earlier.
+• Does not work with livestream."</string>
+    <string name="revanced_enable_shorts_custom_actions_flyout_menu_summary_off">Custom actions are disabled in flyout menu.</string>
+    <string name="revanced_shorts_custom_actions_toolbar_dialog_title">Custom actions</string>
+    <string name="revanced_shorts_custom_actions_copy_video_url_label">Copy video URL</string>
+    <string name="revanced_shorts_custom_actions_copy_video_url_title">Show copy video URL menu</string>
+    <string name="revanced_shorts_custom_actions_copy_video_url_summary_on">Copy video URL menu is shown.</string>
+    <string name="revanced_shorts_custom_actions_copy_video_url_summary_off">Copy video URL menu is hidden.</string>
+    <string name="revanced_shorts_custom_actions_copy_video_url_timestamp_label">Copy timestamp URL</string>
+    <string name="revanced_shorts_custom_actions_copy_video_url_timestamp_title">Show copy timestamp URL menu</string>
+    <string name="revanced_shorts_custom_actions_copy_video_url_timestamp_summary_on">Copy timestamp URL menu is shown.</string>
+    <string name="revanced_shorts_custom_actions_copy_video_url_timestamp_summary_off">Copy timestamp URL menu is hidden.</string>
+    <string name="revanced_shorts_custom_actions_external_downloader_label">External downloader</string>
+    <string name="revanced_shorts_custom_actions_external_downloader_title">Show external downloader menu</string>
+    <string name="revanced_shorts_custom_actions_external_downloader_summary_on">External downloader menu is shown.</string>
+    <string name="revanced_shorts_custom_actions_external_downloader_summary_off">External downloader menu is hidden.</string>
+    <string name="revanced_shorts_custom_actions_open_video_label">Open video</string>
+    <string name="revanced_shorts_custom_actions_open_video_title">Show open video menu</string>
+    <string name="revanced_shorts_custom_actions_open_video_summary_on">Open video menu is shown.</string>
+    <string name="revanced_shorts_custom_actions_open_video_summary_off">Open video menu is hidden.</string>
+    <string name="revanced_shorts_custom_actions_repeat_state_label">Repeat state</string>
+    <string name="revanced_shorts_custom_actions_repeat_state_title">Show repeat state menu</string>
+    <string name="revanced_shorts_custom_actions_repeat_state_summary_on">Repeat state menu is shown.</string>
+    <string name="revanced_shorts_custom_actions_repeat_state_summary_off">Repeat state menu is hidden.</string>
 
     <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts, PreferenceScreen: Shorts player, PreferenceCategory: Experimental Flags -->
     <string name="revanced_enable_shorts_time_stamp_title">Enable timestamps</string>

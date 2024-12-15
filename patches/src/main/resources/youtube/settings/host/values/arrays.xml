@@ -136,6 +136,7 @@
         <item>https://github.com/deniscerri/ytdlnis/releases/latest</item>
     </string-array>
     <string-array name="revanced_overlay_button_play_all_type_entries">
+        <item>@string/revanced_overlay_button_play_all_type_entry_0</item>
         <item>@string/revanced_overlay_button_play_all_type_entry_1</item>
         <item>@string/revanced_overlay_button_play_all_type_entry_2</item>
         <item>@string/revanced_overlay_button_play_all_type_entry_3</item>
@@ -150,6 +151,7 @@
         <item>@string/revanced_overlay_button_play_all_type_entry_12</item>
     </string-array>
     <string-array name="revanced_overlay_button_play_all_type_entry_values">
+        <item>ALL_CONTENTS_WITH_TIME_ASCENDING</item>
         <item>ALL_CONTENTS_WITH_TIME_DESCENDING</item>
         <item>ALL_CONTENTS_WITH_POPULAR_DESCENDING</item>
         <item>VIDEOS_ONLY_WITH_TIME_DESCENDING</item>
