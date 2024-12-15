@@ -471,16 +471,17 @@ public class Settings extends BaseSettings {
 
     // PreferenceScreen: Shorts - Shorts player components - Custom actions
     public static final BooleanSetting ENABLE_SHORTS_CUSTOM_ACTIONS_FLYOUT_MENU = new BooleanSetting("revanced_enable_shorts_custom_actions_flyout_menu", FALSE, true);
+    public static final BooleanSetting ENABLE_SHORTS_CUSTOM_ACTIONS_TOOLBAR = new BooleanSetting("revanced_enable_shorts_custom_actions_toolbar", FALSE, true);
     public static final BooleanSetting SHORTS_CUSTOM_ACTIONS_COPY_VIDEO_URL = new BooleanSetting("revanced_shorts_custom_actions_copy_video_url", FALSE, true,
-            parentsAny(ENABLE_SHORTS_CUSTOM_ACTIONS_FLYOUT_MENU));
+            parentsAny(ENABLE_SHORTS_CUSTOM_ACTIONS_FLYOUT_MENU, ENABLE_SHORTS_CUSTOM_ACTIONS_TOOLBAR));
     public static final BooleanSetting SHORTS_CUSTOM_ACTIONS_COPY_VIDEO_URL_TIMESTAMP = new BooleanSetting("revanced_shorts_custom_actions_copy_video_url_timestamp", FALSE, true,
-            parentsAny(ENABLE_SHORTS_CUSTOM_ACTIONS_FLYOUT_MENU));
+            parentsAny(ENABLE_SHORTS_CUSTOM_ACTIONS_FLYOUT_MENU, ENABLE_SHORTS_CUSTOM_ACTIONS_TOOLBAR));
     public static final BooleanSetting SHORTS_CUSTOM_ACTIONS_EXTERNAL_DOWNLOADER = new BooleanSetting("revanced_shorts_custom_actions_external_downloader", FALSE, true,
-            parentsAny(ENABLE_SHORTS_CUSTOM_ACTIONS_FLYOUT_MENU));
+            parentsAny(ENABLE_SHORTS_CUSTOM_ACTIONS_FLYOUT_MENU, ENABLE_SHORTS_CUSTOM_ACTIONS_TOOLBAR));
     public static final BooleanSetting SHORTS_CUSTOM_ACTIONS_OPEN_VIDEO = new BooleanSetting("revanced_shorts_custom_actions_open_video", FALSE, true,
-            parentsAny(ENABLE_SHORTS_CUSTOM_ACTIONS_FLYOUT_MENU));
+            parentsAny(ENABLE_SHORTS_CUSTOM_ACTIONS_FLYOUT_MENU, ENABLE_SHORTS_CUSTOM_ACTIONS_TOOLBAR));
     public static final BooleanSetting SHORTS_CUSTOM_ACTIONS_REPEAT_STATE = new BooleanSetting("revanced_shorts_custom_actions_repeat_state", FALSE, true,
-            parentsAny(ENABLE_SHORTS_CUSTOM_ACTIONS_FLYOUT_MENU));
+            parentsAny(ENABLE_SHORTS_CUSTOM_ACTIONS_FLYOUT_MENU, ENABLE_SHORTS_CUSTOM_ACTIONS_TOOLBAR));
 
     // Experimental Flags
     public static final BooleanSetting ENABLE_TIME_STAMP = new BooleanSetting("revanced_enable_shorts_time_stamp", FALSE, true);
@@ -488,11 +489,6 @@ public class Settings extends BaseSettings {
     public static final IntegerSetting META_PANEL_BOTTOM_MARGIN = new IntegerSetting("revanced_shorts_meta_panel_bottom_margin", 32, true, parent(ENABLE_TIME_STAMP));
     public static final BooleanSetting HIDE_SHORTS_TOOLBAR = new BooleanSetting("revanced_hide_shorts_toolbar", FALSE, true);
     public static final BooleanSetting HIDE_SHORTS_NAVIGATION_BAR = new BooleanSetting("revanced_hide_shorts_navigation_bar", FALSE, true);
-    public static final BooleanSetting HOOK_MORE_BUTTON = new BooleanSetting("revanced_hook_more_button", TRUE);
-    public static final BooleanSetting COPY_URL_SHORT_TOOLBAR_MENU = new BooleanSetting("revanced_hook_more_button_option_copy_link", TRUE);
-    public static final BooleanSetting COPY_URL_WITH_TIMESTAMP_SHORT_TOOLBAR_MENU = new BooleanSetting("revanced_hook_more_button_option_copy_link_timestamp", TRUE);
-    public static final BooleanSetting DOWNLOAD_SHORT_TOOLBAR_MENU = new BooleanSetting("revanced_hook_more_button_option_download_short", TRUE);
-    public static final BooleanSetting OPEN_IN_NORMAL_PLAYER_SHORT_TOOLBAR_MENU = new BooleanSetting("revanced_hook_more_button_option_open_in_normal_player", TRUE);
     public static final IntegerSetting SHORTS_NAVIGATION_BAR_HEIGHT_PERCENTAGE = new IntegerSetting("revanced_shorts_navigation_bar_height_percentage", 45, true, parent(HIDE_SHORTS_NAVIGATION_BAR));
     public static final BooleanSetting REPLACE_CHANNEL_HANDLE = new BooleanSetting("revanced_replace_channel_handle", FALSE, true);
 

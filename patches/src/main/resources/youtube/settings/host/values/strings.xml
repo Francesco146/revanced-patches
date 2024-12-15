@@ -1364,6 +1364,11 @@ Limitations:
 • Does not work if app version is spoofed to 18.49.37 or earlier.
 • Does not work with livestream."</string>
     <string name="revanced_enable_shorts_custom_actions_flyout_menu_summary_off">Custom actions are disabled in flyout menu.</string>
+    <string name="revanced_enable_shorts_custom_actions_toolbar_title">Enable custom actions in toolbar</string>
+    <string name="revanced_enable_shorts_custom_actions_toolbar_summary_on">"Custom actions are enabled in toolbar.
+
+Press and hold the More button to show the Custom actions dialog."</string>
+    <string name="revanced_enable_shorts_custom_actions_toolbar_summary_off">Custom actions are disabled in toolbar.</string>
     <string name="revanced_shorts_custom_actions_toolbar_dialog_title">Custom actions</string>
     <string name="revanced_shorts_custom_actions_copy_video_url_label">Copy video URL</string>
     <string name="revanced_shorts_custom_actions_copy_video_url_title">Show copy video URL menu</string>
@@ -1385,6 +1390,10 @@ Limitations:
     <string name="revanced_shorts_custom_actions_repeat_state_title">Show repeat state menu</string>
     <string name="revanced_shorts_custom_actions_repeat_state_summary_on">Repeat state menu is shown.</string>
     <string name="revanced_shorts_custom_actions_repeat_state_summary_off">Repeat state menu is hidden.</string>
+    <string name="revanced_shorts_custom_actions_about_title">About Custom actions</string>
+    <string name="revanced_shorts_custom_actions_about_about_summary">"This feature is still experimental, so there is no guarantee that it will work perfectly.
+
+Most bugs cannot be fixed due to client-side limitations, so use it only for testing purposes."</string>
 
     <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts, PreferenceScreen: Shorts player, PreferenceCategory: Experimental Flags -->
     <string name="revanced_enable_shorts_time_stamp_title">Enable timestamps</string>
@@ -1411,27 +1420,6 @@ Limitations:
     <string name="revanced_replace_channel_handle_title">Replace channel handle</string>
     <string name="revanced_replace_channel_handle_summary_on">Channel name is used.</string>
     <string name="revanced_replace_channel_handle_summary_off">Channel handle is used.</string>
-
-    <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts, PreferenceScreen: Shorts player, PreferenceCategory: Experimental Flags, PreferenceScreen: Shorts toolbar -->
-    <string name="revanced_hook_more_button_title">Long press More button for Shorts toolbar menu</string>
-    <string name="revanced_hook_more_button_summary_on">Long press More button to show the Shorts toolbar menu.</string>
-    <string name="revanced_hook_more_button_summary_off">More button will show the default menu.</string>
-    <string name="revanced_hook_more_button_dialog_title">Short Toolbar Menu</string>
-    <string name="revanced_hook_more_button_option_copy_link_title">Copy Link</string>
-    <string name="revanced_hook_more_button_option_copy_link_summary_on">A button to copy the video link to the clipboard is shown.</string>
-    <string name="revanced_hook_more_button_option_copy_link_summary_off">A button to copy the video link to the clipboard isn\'t shown.</string>
-    <string name="revanced_hook_more_button_option_copy_link_timestamp_title">Copy Link with Time-Stamp</string>
-    <string name="revanced_hook_more_button_option_copy_link_timestamp_summary_on">A button to copy the video link with the current timestamp to the clipboard is shown.</string>
-    <string name="revanced_hook_more_button_option_copy_link_timestamp_summary_off">A button to copy the video link with the current timestamp to the clipboard isn\'t shown.</string>
-    <string name="revanced_hook_more_button_option_download_short_title">Download Short</string>
-    <string name="revanced_hook_more_button_option_download_short_summary_on">A button to download the Short is shown.</string>
-    <string name="revanced_hook_more_button_option_download_short_summary_off">A button to download the Short isn\'t shown.</string>
-    <string name="revanced_hook_more_button_option_open_in_normal_player_title">Open in normal player</string>
-    <string name="revanced_hook_more_button_option_open_in_normal_player_summary_on">"A button to open the Short in the normal player is shown.
-
-        Limitations:
-        • Requires 'Open Link Directly'."</string>
-    <string name="revanced_hook_more_button_option_open_in_normal_player_summary_off">A button to open the Short in the normal player isn\'t shown.</string>
 
 
     <!-- PreferenceScreen: Swipe controls -->
